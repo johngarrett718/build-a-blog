@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Build-A-Blog</h1>
+
+    <form method="post">
+      <label>
+        <div>Title</div>
+        <input type="text" name="title" value="{{title}}">
+      </label>
+
+      <label>
+        <div>Content</div>
+        <textarea name="content">{{content}}</textarea>
+      </label>
+
+      <div class="error">{{error}}</div>
+      <input type="submit">
+    </form>
+
+    <hr>
+
+    {% for art in arts %}
+      <div class="content">
+        <div class="content-title">{{content.title}}</div>
+        <pre class="content-body">{{content.content}}</pre>
+      </div>
+    {% endfor %}
+    {% endblock %}
+
+  </body>
+<html>
