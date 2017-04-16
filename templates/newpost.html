@@ -21,17 +21,12 @@
 
 <hr>
 
-{% for art in arts %}
-<div class="content">
-    <div class="content-title">{{content.title}}</div>
-    <pre class="content-body">{{content.content}}</pre>
-</div>
-{% endfor %}
+
 
 {% for blog in blogs %}
 <div class="content">
-    <div class="content-title">{{content.title}}</div>
-    <pre class="content-body">{{content.content}}</pre>
+    <div class="content-title">{{blog.title}}</div>
+    <pre class="content-body">{{blog.content}}</pre>
 </div>
 {% endfor %}
 {% endblock %}
