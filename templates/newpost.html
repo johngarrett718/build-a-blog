@@ -19,14 +19,4 @@
     <input type="submit">
 </form>
 
-<hr>
-
-
-
-{% for blog in blogs %}
-<div class="content">
-    <div class="content-title">{{blog.title}}</div>
-    <pre class="content-body">{{blog.content}}</pre>
-</div>
-{% endfor %}
 {% endblock %}
