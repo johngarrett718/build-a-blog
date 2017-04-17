@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Build-A-Blog</h1>
+
+{% for blog in posts %}
+<div class="content">
+    <div class="content-title">{{blog.title}}</div>
+    <pre class="content-body">{{blog.content}}</pre>
+</div>
+{% endfor %}
+
+{% endblock %}
