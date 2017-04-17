@@ -28,16 +28,13 @@ class Content(db.Model):
 
 class ViewPostHandler(Handler):
     def get(self, id):
-        # get post
         post = Content.get_by_id(int(id))
         self.render("single.html", post=post)
 
-
-class TopFiveHandler(Handler):
+class MainPageHandler(Handler):
     def get(self):
         blogs = db.GqlQuery("SELECT * FROM Content ORDER BY created DESC limit 5")
         self.render("top5.html", posts=blogs)
-
 
 class NewPostHandler(Handler):
     def render_newpost(self, title="", content="", error=""):
@@ -61,7 +58,7 @@ class NewPostHandler(Handler):
 
 app = webapp2.WSGIApplication([
     webapp2.Route('/blog/<id:\d+>', ViewPostHandler),
-    webapp2.Route('/blog', TopFiveHandler),
+    webapp2.Route('/blog', MainPageHandler),
     webapp2.Route('/newpost', NewPostHandler),
-    ('/', TopFiveHandler),
+    ('/', MainPageHandler),
 ], debug=True)
