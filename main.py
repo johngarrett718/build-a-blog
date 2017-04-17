@@ -12,6 +12,7 @@ class Handler(webapp2.RequestHandler):
     def write(self, *a, **kw):
         self.response.out.write(*a, **kw)
 
+
     def render_str(self, template, **params):
         t = jinja_env.get_template(template)
         return t.render(params)
@@ -25,6 +26,12 @@ class Content(db.Model):
     content = db.TextProperty(required=True)
     created = db.DateTimeProperty(auto_now_add=True)
 
+
+class ViewPostHandler(Handler):
+    def get(self, id):
+        #get post
+        post = Content.get_by_id(int(id))
+        self.render("single.html", post=post)
 
 class MainPage(Handler):
     def render_newpost(self, title="", content="", error=""):
@@ -49,5 +56,6 @@ class MainPage(Handler):
 
 
 app = webapp2.WSGIApplication([
+    webapp2.Route('/blog/<id:\d+>', ViewPostHandler),
     ('/', MainPage),
 ], debug=True)
