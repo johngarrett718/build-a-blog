@@ -39,6 +39,9 @@ class TopFiveHandler(Handler):
         self.render("top5.html", posts=blogs)
 
 
+#2 create a new handler
+
+
 class MainPage(Handler):
     def render_newpost(self, title="", content="", error=""):
         blogs = db.GqlQuery("SELECT * FROM Content ORDER BY created DESC")
@@ -64,5 +67,6 @@ class MainPage(Handler):
 app = webapp2.WSGIApplication([
     webapp2.Route('/blog/<id:\d+>', ViewPostHandler),
     webapp2.Route('/blog', TopFiveHandler),
+    #1 create new route
     ('/', MainPage),
 ], debug=True)
